@@ -1,0 +1,30 @@
+---
+"on": [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Test run of the action
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Generate split 0
+        uses: ./
+        id: split-0
+        with:
+          test-files: test/testfiles/*_spec.rb
+          junit-path: test/results/*.xml
+          split-total: 2
+          split-index: 0
+      - name: Show split 0
+        run: 'echo "Split 0 files: ${{ steps.split-0.outputs.split-files }}"'
+      - name: Generate split 1
+        uses: ./
+        id: split-1
+        with:
+          test-files: test/testfiles/*_spec.rb
+          junit-path: test/results/*.xml
+          split-total: 2
+          split-index: 1
+      - name: Show split 1
+        run: 'echo "Split 1 files: ${{ steps.split-1.outputs.split-files }}"'

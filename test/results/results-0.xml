@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="rspec" tests="2" skipped="0" failures="0" errors="0" time="3.0">
+<properties>
+<property name="seed" value="48282"/>
+</properties>
+<testcase classname="unit_a" file="./test/testfiles/unit_a_spec.rb" time="1.0"></testcase>
+<testcase classname="unit_c" file="./test/testfiles/unit_c_spec.rb" time="2.0"></testcase>
+</testsuite>

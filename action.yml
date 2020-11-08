@@ -1,0 +1,31 @@
+name: "Split Tests"
+description: "Attempts to split tests evenly based on time"
+inputs:
+  test-files:
+    description: "Glob pattern of files to test"
+    required: true
+  junit-path:
+    description: "Glob pattern of junit files to include"
+    required: true
+  split-total:
+    description: "Total number of splits"
+    required: true
+  split-index:
+    description: "Zero-based index of the current split"
+    required: true
+outputs:
+  split-files:
+    description: "The test files to run in the current split"
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - --junit
+    - --junit-path
+    - ${{ inputs.junit-path }}
+    - --split-total
+    - ${{ inputs.split-total }}
+    - --split-index
+    - ${{ inputs.split-index}}
+    - --glob
+    - ${{ inputs.test-files }}
