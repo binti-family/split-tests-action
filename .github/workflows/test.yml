@@ -28,3 +28,14 @@ jobs:
           split-index: 1
       - name: Show split 1
         run: 'echo "Split 1 files: ${{ steps.split-1.outputs.split-files }}"'
+      - name: Generate with exclusion
+        uses: ./
+        id: split-excluding
+        with:
+          test-files: test/testfiles/*_spec.rb
+          exclude-files: test/testfiles/unit_b_spec.rb
+          junit-path: test/results/*.xml
+          split-total: 1
+          split-index: 0
+      - name: Show split with exclusion
+        run: 'echo "files: ${{ steps.split-excluding.outputs.split-files }}"'
