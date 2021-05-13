@@ -4,6 +4,10 @@ inputs:
   test-files:
     description: "Glob pattern of files to test"
     required: true
+  exclude-files:
+    description: "Glob pattern of files to *exclude* from testing"
+    required: false
+    default: "''"
   junit-path:
     description: "Glob pattern of junit files to include"
     required: true
@@ -29,3 +33,5 @@ runs:
     - ${{ inputs.split-index}}
     - --glob
     - ${{ inputs.test-files }}
+    - --exclude-glob
+    - ${{ inputs.exclude-files }}
